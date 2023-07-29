@@ -13,8 +13,9 @@
 </template>
 
 <script lang="ts" setup>
+import store from "../../store/index";
 const SideBar = () => {
-  console.log("hello world");
+  store.commit("isSideNav/ChangeSideNav");
 };
 </script>
 <style scoped></style>

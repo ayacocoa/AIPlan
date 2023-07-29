@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <v-navigation-drawer v-model="drawer" temporary>
+      <v-navigation-drawer v-model="issee" temporary>
         <v-list-item
           prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
           title="John Leider"
@@ -22,15 +22,12 @@
           ></v-list-item>
         </v-list>
       </v-navigation-drawer>
-      <v-main style="height: 250px">
-        <div class="d-flex justify-center align-center h-100">
-          <v-btn color="primary" @click.stop="drawer = !drawer"> Toggle </v-btn>
-        </div>
-      </v-main>
     </v-layout>
   </v-card>
 </template>
 
 <script setup lang="ts">
-let drawer: boolean = false;
+import { useStore } from "@/store";
+const store = useStore();
+let issee = store.state.isSideNav.Nav;
 </script>
