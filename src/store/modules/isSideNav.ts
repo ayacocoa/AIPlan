@@ -5,13 +5,15 @@ import { Module } from "vuex";
     Nav: boolean;
   }
   
-  export const isSideNav: Module<TypeModuleStateApp, TypeRootState> = {
+export const isSideNav: Module<TypeModuleStateApp, TypeRootState> = {
+      namespaced: true,
     state: () => ({
       Nav: false,
       }),
     mutations: {
-          Change(state) {
-              state.Nav = !state.Nav
+        Change(state) {
+           
+            state.Nav = !state.Nav
         }
     }
   };
