@@ -3,6 +3,7 @@ import { App, InjectionKey } from "vue";
 import { createStore, useStore as baseUseStore, Store } from "vuex";
 import { TypeRootState, TypeAllState } from "./type";
 import { isSideNav  } from "./modules/isSideNav";
+import { isDetail  } from "./modules/isDetail";
 
 // 创建一个新的 store 实例
 const store = createStore<TypeRootState>({
@@ -11,7 +12,8 @@ const store = createStore<TypeRootState>({
   mutations: {
     },
     modules: {
-        isSideNav: isSideNav ,
+      isSideNav: isSideNav,
+      isDetail: isDetail
       },
 });
 

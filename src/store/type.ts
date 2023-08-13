@@ -2,6 +2,7 @@
  * 模块state类型引入
  */
 import { TypeModuleStateApp } from "./modules/isSideNav";
+import { TypeDetailStateApp } from "./modules/isDetail";
 
 
 /**
@@ -14,4 +15,5 @@ export interface TypeRootState {
  */
 export interface TypeAllState extends TypeRootState {
     isSideNav: TypeModuleStateApp;
+    isDetail: TypeDetailStateApp;
 }

@@ -21,10 +21,12 @@
 <script lang="ts" setup>
 import { useStore } from "@/store";
 import router from "../../router/index";
+import { ref } from "vue";
 const store = useStore();
 const SideBar = () => {
   // store.commit("isSideNav/Change");
   router.back();
 };
+let tab = ref("");
 </script>
 <style scoped></style>

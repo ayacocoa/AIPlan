@@ -13,8 +13,8 @@ import { setupStore } from "./store";
 // Plugins
 import { registerPlugins } from '@/plugins'
 
-const app = createApp(App)
 
+const app = createApp(App)
 setupStore(app); // 安装store
 registerPlugins(app)
 
