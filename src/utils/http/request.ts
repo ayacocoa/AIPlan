@@ -24,7 +24,7 @@ import Axios, {
    * 默认 create Axios 的配置参数
    */
   const defaultConfig: AxiosRequestConfig = {
-    baseURL: "",
+    baseURL: " https://mock.presstime.cn/mock/64d380d3f27131eed4453978/api",
     timeout: 10000, //10秒超时
     withCredentials: true,
     responseType: "json",

@@ -48,46 +48,24 @@ import Vegetables from "../../components/content/Vegetables.vue";
 import FoodCard from "../../components/card/FoodCard.vue";
 import DetailCard from "@/components/card/DetailCard.vue";
 import { useStore } from "@/store";
-import { ref } from "vue";
+import { VegetableApi } from "../../api/vegetables/vegetables";
+import { VegetablesType } from "../../api/vegetables/types";
+import { ref, onMounted, onBeforeMount, reactive } from "vue";
 const store = useStore();
 let tab = ref("");
-const data = [
-  {
-    src: "src\\assets\\images\\fruit.jpg",
-    title: "Fruit",
-    id: 0,
-  },
-  {
-    src: "src\\assets\\images\\food.jpg",
-    title: "Food",
-    id: 1,
-  },
-  {
-    src: "src\\assets\\images\\food.jpg",
-    title: "Food",
-    id: 2,
-  },
-  {
-    src: "src\\assets\\images\\food.jpg",
-    title: "Food",
-    id: 3,
-  },
-  {
-    src: "src\\assets\\images\\food.jpg",
-    title: "Food",
-    id: 4,
-  },
-  {
-    src: "src\\assets\\images\\food.jpg",
-    title: "Food",
-    id: 5,
-  },
-  {
-    src: "src\\assets\\images\\food.jpg",
-    title: "Food",
-    id: 6,
-  },
-];
+let data: Array<VegetablesType> = reactive([]);
+console.log(data);
+onMounted(() => {
+  VegetableApi.getVegetable().then((res) => {
+    // @ts-ignore
+    res.forEach((e) => {
+      data.push(e);
+    });
+    // data = data.concat(res); //失去响应式
+    // console.log(data);
+    // console.log(res);
+  });
+});
 </script>
 <style lang="scss" scoped>
 .main {
