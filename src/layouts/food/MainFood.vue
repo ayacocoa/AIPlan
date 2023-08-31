@@ -16,17 +16,19 @@
             <v-tab value="five">主食</v-tab>
           </v-tabs>
 
-          <v-card-text>
+          <v-card-text class="cardtext">
             <v-window v-model="tab">
-              <v-window-item value="one" class="content">
+              <v-window-item value="one" class="content"> </v-window-item>
+              <v-window-item value="two" class="content">
                 <FoodCard
                   v-for="item in data"
                   :key="item.id"
+                  :item="item"
+                  :id="item.id"
                   :src="item.src"
                   :title="item.title"
                 />
               </v-window-item>
-              <v-window-item value="two" class="content"> Two </v-window-item>
               <v-window-item value="three" class="content">
                 Three
               </v-window-item>
@@ -44,27 +46,19 @@
 <script setup lang="ts">
 import TopBar from "../../components/navbar/TopBar.vue";
 import BottomBar from "@/components/navbar/BottomBar.vue";
-import Vegetables from "../../components/content/Vegetables.vue";
+import Vegetables from "../../components/nav_item/Vegetables.vue";
 import FoodCard from "../../components/card/FoodCard.vue";
 import DetailCard from "@/components/card/DetailCard.vue";
 import { useStore } from "@/store";
-import { VegetableApi } from "../../api/vegetables/vegetables";
 import { VegetablesType } from "../../api/vegetables/types";
-import { ref, onMounted, onBeforeMount, reactive } from "vue";
+import { ref, onMounted, reactive } from "vue";
 const store = useStore();
 let tab = ref("");
-let data: Array<VegetablesType> = reactive([]);
-console.log(data);
+let data: Array<VegetablesType> = reactive(store.state.vegetablesData.data);
 onMounted(() => {
-  VegetableApi.getVegetable().then((res) => {
-    // @ts-ignore
-    res.forEach((e) => {
-      data.push(e);
-    });
-    // data = data.concat(res); //失去响应式
-    // console.log(data);
-    // console.log(res);
-  });
+  if (!data.length) {
+    store.commit("vegetablesData/getData");
+  }
 });
 </script>
 <style lang="scss" scoped>
@@ -72,29 +66,36 @@ onMounted(() => {
   display: flex;
   .detailcard {
     position: fixed;
-    top: 10rem;
-    left: 5rem;
+    top: 4rem;
+    left: 4rem;
     z-index: 999;
-    width: 16rem;
+    width: 20rem;
     height: 20rem;
   }
   .sidebox {
     position: fixed;
     left: 0;
     width: 4rem;
-    height: 10%;
+    height: 100%;
     background-color: orange;
   }
   .contentbox {
     position: fixed;
     left: 4rem;
-    width: 20.5rem;
+    width: 100%;
     height: 100%;
-    .content {
-      display: flex;
-      flex-flow: row;
-      justify-content: left;
-      flex-wrap: wrap;
+    overflow-y: scroll;
+    .cardtext {
+      width: 90%;
+      height: 100%;
+      padding: 0;
+      .content {
+        width: 96%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 8rem;
+      }
     }
   }
 }

@@ -2,8 +2,9 @@
   <div
     class="foodcard"
     @touchend="touchEnd"
-    @touchstart="touchStart"
+    @touchstart="touchStart(props.id!)"
     @gotouchmove="gotouchMove"
+    @click="Add(props.item!)"
   >
     <img :src="src" alt="" />
     <h2>{{ title }}</h2>
@@ -13,18 +14,23 @@
 import { useStore } from "@/store";
 const store = useStore();
 const props = defineProps({
+  id: Number,
   src: String,
   title: String,
+  item: Object,
 });
 let timeOutEvent: any;
 /** 触屏开始 */
-function touchStart() {
+function touchStart(id: number) {
   clearTimeout(timeOutEvent); //清除定时器
   timeOutEvent = 0;
   timeOutEvent = setTimeout(() => {
+    let data = store.state.vegetablesData.data.find((arr) => {
+      return arr.id === id;
+    });
     //长按行为的操作函数
-    store.commit("isDetail/Change");
-  }, 1000); //这里设置定时
+    store.commit("isDetail/Change", data);
+  }, 1000);
 }
 /** 触屏结束 */
 function touchEnd() {
@@ -37,11 +43,15 @@ function gotouchMove() {
   clearTimeout(timeOutEvent); //清除定时器
   timeOutEvent = 0;
 }
+function Add(item: Object) {
+  store.commit("vegetablesData/pushData", item);
+}
 </script>
 <style lang="scss" scoped>
 .foodcard {
-  width: 4rem;
-  height: 5rem;
+  margin: 0.1rem;
+  width: 6rem;
+  height: 7rem;
   background-color: #fff;
   opacity: 0.8;
   border-radius: 10px;
@@ -50,8 +60,8 @@ function gotouchMove() {
   flex-flow: column;
   align-items: center;
   img {
-    width: 3rem;
-    height: 3rem;
+    width: 5rem;
+    height: 5rem;
   }
 }
 </style>
