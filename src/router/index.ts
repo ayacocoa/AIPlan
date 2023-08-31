@@ -11,6 +11,11 @@ const routes = [
     name:'mainfood',
     component: () => import('@/layouts/food/MainFood.vue'),
   },
+  {
+    path: '/video',
+    name:'video',
+    component: () => import('@/layouts/video/ShowVideo.vue'),
+  },
 ]
 
 const router = createRouter({

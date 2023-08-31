@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 export interface VegetablesType {
   src: string;
   title: string;
   id: number;
   detail: string;
+=======
+export interface VegetablesType  {
+    src: string;
+    title: string;
+    id:number;
+    detail:string
+>>>>>>> dee7ac561cb80113d2a64c4a49535d4fab0bdee1
 }
 
 export interface Vegetableslist {
