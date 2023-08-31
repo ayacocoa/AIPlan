@@ -1,7 +1,8 @@
 export interface VegetablesType  {
     src: string;
     title: string;
-    id:number
+    id:number;
+    detail:string
 }
 
 export interface Vegetableslist {

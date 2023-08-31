@@ -54,11 +54,11 @@ import { ref, onMounted, onBeforeMount, reactive } from "vue";
 const store = useStore();
 let tab = ref("");
 let data: Array<VegetablesType> = reactive([]);
-console.log(data);
 onMounted(() => {
   VegetableApi.getVegetable().then((res) => {
+    console.log(res)
     // @ts-ignore
-    res.forEach((e) => {
+    res.data.forEach((e) => {
       data.push(e);
     });
     // data = data.concat(res); //失去响应式
