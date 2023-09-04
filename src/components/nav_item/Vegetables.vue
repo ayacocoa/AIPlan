@@ -1,19 +1,35 @@
 <template>
-  <transition name="tran-modal">
-    <div class="sidenav" @click="nav" v-if="onnav"></div>
+  <div>
+    <div class="sidenav" @click="nav" v-if="onnav">
+      <CardBox
+        v-for="item in data"
+        :key="item.id"
+        :src="item.src"
+        @click="Delete(item)"
+      />
+    </div>
     <div class="sidenav2" @click="nav" v-else>
       <v-icon size="x-large" color="green-darken-2" icon="mdi-carrot"></v-icon>
     </div>
-  </transition>
+    <button class="Submit">提交</button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import CardBox from "../card/CardBox.vue";
+import { useStore } from "@/store/index";
+const store = useStore();
 let onnav = ref(true);
 const nav = () => {
   // onnav.value = !onnav.value;
+  //TODO:扩展侧框函数
 };
+let data = reactive(store.state.vegetablesData.user_data_list);
+const Delete = (item: Object) => {
+  store.commit("vegetablesData/deleteData", item);
+};
+const Submit = () => {};
 </script>
 
 <style lang="scss" scoped>
@@ -21,10 +37,10 @@ const nav = () => {
   position: fixed;
   left: 0;
   width: 4rem;
-  height: 100%;
   background-color: orange;
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
+  flex-flow: column;
   align-items: center;
 }
 .content {

@@ -4,6 +4,7 @@ import { createStore, useStore as baseUseStore, Store } from "vuex";
 import { TypeRootState, TypeAllState } from "./type";
 import { isSideNav  } from "./modules/isSideNav";
 import { isDetail  } from "./modules/isDetail";
+import { vegetablesData } from './modules/vegetablesData';
 
 // 创建一个新的 store 实例
 const store = createStore<TypeRootState>({
@@ -13,7 +14,8 @@ const store = createStore<TypeRootState>({
     },
     modules: {
       isSideNav: isSideNav,
-      isDetail: isDetail
+      isDetail: isDetail,
+      vegetablesData: vegetablesData
       },
 });
 
