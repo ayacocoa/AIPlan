@@ -12,7 +12,7 @@
       </v-btn>
     
 
-    <v-btn value="nearby">
+    <v-btn value="nearby" @click="toAI">
       <v-icon>mdi-map-marker</v-icon>
 
       Nearby
@@ -25,6 +25,9 @@ const toMainfood = ()=>{
   router.push('/mainfood')
 }
 const toVideo = () =>{
+  router.push('/video')
+}
+const toAI = () =>{
   router.push('/video')
 }
 </script>
