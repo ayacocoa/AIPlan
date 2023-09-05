@@ -1,11 +1,11 @@
 import { Module } from "vuex";
 import { TypeRootState } from "@/store/type";
-import { VegetableApi } from "../../api/vegetables/vegetables";
-import { VegetablesType } from "@/api/vegetables/types";
+import { VegetableApi } from "../../api/food/vegetables";
+import { FoodType } from "@/api/food/types";
 
 export interface TypeVegetablesStateApp {
-  data: Array<VegetablesType>;
-  user_data_list: Array<VegetablesType>;
+  data: Array<FoodType>;
+  user_data_list: Array<FoodType>;
 }
 
 export const vegetablesData: Module<TypeVegetablesStateApp, TypeRootState> = {
@@ -18,8 +18,9 @@ export const vegetablesData: Module<TypeVegetablesStateApp, TypeRootState> = {
     getData(state) {
       // state.data = [];
       VegetableApi.getVegetable().then((res) => {
+        console.log(res)
         // @ts-ignore
-        res.forEach((e) => {
+        res.data.forEach((e) => {
           state.data.push(e);
         });
       });
@@ -31,6 +32,7 @@ export const vegetablesData: Module<TypeVegetablesStateApp, TypeRootState> = {
       const index = state.user_data_list.findIndex((e) => {
         return e.id === data.id;
       });
+      console.log(index)
       state.user_data_list.splice(index, 1);
     },
   },

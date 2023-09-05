@@ -7,6 +7,7 @@
 // Components
 import App from './App.vue'
 import './styles/settings.css'
+import 'animate.css/animate.min.css' //引入
 // Composables
 import { createApp } from 'vue'
 import { setupStore } from "./store";

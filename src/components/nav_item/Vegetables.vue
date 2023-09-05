@@ -1,16 +1,21 @@
 <template>
   <div>
     <div class="sidenav" @click="nav" v-if="onnav">
-      <CardBox
+      
+      <transition>  
+      <div>
+        <CardBox
         v-for="item in data"
         :key="item.id"
         :src="item.src"
         @click="Delete(item)"
-      />
+        class="animated animate__fadeInLeft"
+      /></div>
+      </transition>
     </div>
-    <div class="sidenav2" @click="nav" v-else>
+    <!-- <div class="sidenav2" @click="nav" v-else>
       <v-icon size="x-large" color="green-darken-2" icon="mdi-carrot"></v-icon>
-    </div>
+    </div> -->
     <button class="Submit">提交</button>
   </div>
 </template>

@@ -1,12 +1,13 @@
 <template>
+  
   <div
     class="foodcard"
     @touchend="touchEnd"
     @touchstart="touchStart(props.id!)"
     @gotouchmove="gotouchMove"
-    @click="Add(props.item!)"
   >
-    <img :src="src" alt="" />
+  <v-icon class="star" icon='mdi-star' @click="Collect(props.item!)" ></v-icon>
+    <img :src="src" alt=""  @click="Add(props.item!)"/>
     <h2>{{ title }}</h2>
   </div>
 </template>
@@ -30,7 +31,7 @@ function touchStart(id: number) {
     });
     //长按行为的操作函数
     store.commit("isDetail/Change", data);
-  }, 1000);
+  }, 1000); //长按所需时间
 }
 /** 触屏结束 */
 function touchEnd() {
@@ -43,8 +44,11 @@ function gotouchMove() {
   clearTimeout(timeOutEvent); //清除定时器
   timeOutEvent = 0;
 }
-function Add(item: Object) {
+function Add(item: object) {
   store.commit("vegetablesData/pushData", item);
+}
+const Collect = (item:object) =>{
+  store.commit("collectData/pushData",item)
 }
 </script>
 <style lang="scss" scoped>
@@ -62,6 +66,14 @@ function Add(item: Object) {
   img {
     width: 5rem;
     height: 5rem;
+  }
+  .star{
+    position: relative;
+    right: 2rem; 
+    top:0.8rem;
+    z-index: 10;
+    font-size: 1rem;
+    color: orange;
   }
 }
 </style>

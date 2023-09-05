@@ -18,10 +18,19 @@
 
           <v-card-text class="cardtext">
             <v-window v-model="tab">
-              <v-window-item value="one" class="content"> </v-window-item>
+              <v-window-item value="one" class="content"> 
+                <FoodCard
+                  v-for="item in collectdata"
+                  :key="item.id"
+                  :item="item"
+                  :id="item.id"
+                  :src="item.src"
+                  :title="item.title"
+                />
+              </v-window-item>
               <v-window-item value="two" class="content">
                 <FoodCard
-                  v-for="item in data"
+                  v-for="item in vegetablesdata"
                   :key="item.id"
                   :item="item"
                   :id="item.id"
@@ -50,15 +59,19 @@ import Vegetables from "../../components/nav_item/Vegetables.vue";
 import FoodCard from "../../components/card/FoodCard.vue";
 import DetailCard from "@/components/card/DetailCard.vue";
 import { useStore } from "@/store";
-import { VegetablesType } from "../../api/vegetables/types";
+import { FoodType } from "../../api/vegetables/types";
 import { ref, onMounted, reactive } from "vue";
 const store = useStore();
 let tab = ref("");
-let data: Array<VegetablesType> = reactive(store.state.vegetablesData.data);
+let vegetablesdata: Array<FoodType> = reactive(store.state.vegetablesData.data);
+let collectdata: Array<FoodType> = reactive(store.state.collectData.data);
 onMounted(() => {
-  if (!data.length) {
+  if (!vegetablesdata.length) {
     store.commit("vegetablesData/getData");
   }
+  // if (!collectdata.length) {
+  //   store.commit("collectData/getData");
+  // }
 });
 </script>
 <style lang="scss" scoped>

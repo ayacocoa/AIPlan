@@ -1,20 +1,12 @@
-<<<<<<< HEAD
-export interface VegetablesType {
+export interface FoodType {
   src: string;
   title: string;
   id: number;
   detail: string;
-=======
-export interface VegetablesType  {
-    src: string;
-    title: string;
-    id:number;
-    detail:string
->>>>>>> dee7ac561cb80113d2a64c4a49535d4fab0bdee1
 }
 
-export interface Vegetableslist {
-  [index: number]: VegetablesType;
+export interface FoodList {
+  [index: number]: FoodType;
 }
 
 //搜索音乐 接口返回的数据类型
