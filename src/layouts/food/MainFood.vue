@@ -2,10 +2,32 @@
   <v-app>
     <TopBar />
     <v-main class="main">
-      <div class="detailcard" v-if="store.state.isDetail.Detail">
+      <!-- <div class="detailcard" v-if="store.state.isDetail.Detail">
         <DetailCard />
-      </div>
-      <div class="sidebox"><Vegetables /></div>
+      </div> -->
+      <v-dialog v-model="store.state.isDetail.Detail" width="auto">
+        <v-card>
+          <v-card-title> {{ store.state.isDetail.data.title }} </v-card-title>
+          <v-card-text>
+            <v-img
+              :src="store.state.isDetail.data.src"
+              height="10rem"
+              aspect-ratio="4/3"
+              cover
+            ></v-img>
+            {{ store.state.isDetail.data.detail }}
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              color="primary"
+              block
+              @click="store.state.isDetail.Detail = false"
+              >关闭</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <div class="sidebox"><Food /></div>
       <div class="contentbox">
         <v-card>
           <v-tabs v-model="tab" bg-color="green">
@@ -18,7 +40,7 @@
 
           <v-card-text class="cardtext">
             <v-window v-model="tab">
-              <v-window-item value="one" class="content"> 
+              <v-window-item value="one" class="content">
                 <FoodCard
                   v-for="item in collectdata"
                   :key="item.id"
@@ -55,7 +77,7 @@
 <script setup lang="ts">
 import TopBar from "../../components/navbar/TopBar.vue";
 import BottomBar from "@/components/navbar/BottomBar.vue";
-import Vegetables from "../../components/nav_item/Vegetables.vue";
+import Food from "../../components/nav_item/Food.vue";
 import FoodCard from "../../components/card/FoodCard.vue";
 import DetailCard from "@/components/card/DetailCard.vue";
 import { useStore } from "@/store";

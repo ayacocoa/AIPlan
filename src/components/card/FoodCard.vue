@@ -69,11 +69,11 @@ const Collect = (item:object) =>{
   }
   .star{
     position: relative;
-    right: 2rem; 
-    top:0.8rem;
+    right: 2.5rem; 
+    top:0.7rem;
     z-index: 10;
-    font-size: 1rem;
-    color: orange;
+    font-size: 1.5rem;
+    color: blue;
   }
 }
 </style>

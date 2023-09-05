@@ -16,7 +16,7 @@
     <!-- <div class="sidenav2" @click="nav" v-else>
       <v-icon size="x-large" color="green-darken-2" icon="mdi-carrot"></v-icon>
     </div> -->
-    <button class="Submit">提交</button>
+    <v-btn class="submit">提交</v-btn>
   </div>
 </template>
 
@@ -59,6 +59,10 @@ const Submit = () => {};
   width: 10rem;
   height: 100%;
   background-color: orange;
+}
+.submit{
+  position:fixed;
+  bottom:4rem;
 }
 .tran-modal {
   &-enter {
